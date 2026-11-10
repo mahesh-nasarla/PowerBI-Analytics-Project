@@ -1,0 +1,337 @@
+# Data Cleaning and Validation Notes
+## Retail Bank Transaction Analysis – Power BI
+
+### 1. Purpose
+
+This document records the data inspection, cleaning, transformation, and validation approach followed for the Retail Bank Transaction Analysis Power BI dashboard.
+
+The objective is to prepare consistent and reliable banking datasets for data modelling, DAX calculations, KPI development, and interactive dashboard reporting.
+
+The cleaning and validation process focuses on customer information, accounts, branches, transactions, loans, loan payments, and cards.
+
+**Important:** Record actual results for checks wherever available. Do not assume that a data-quality issue was resolved without verifying the result. Keep the original source datasets unchanged and perform transformations in Power Query.
+
+### 2. Source Data
+
+The project uses eight datasets imported into Microsoft Power BI.
+
+| Dataset | Reported Records |
+|---|---:|
+| Customers | 500 |
+| Accounts | 700 |
+| Branches | 40 |
+| Transactions | 5,000 |
+| Loans | 300 |
+| Loan Payments | 2,000 |
+| Cards | 600 |
+| Date Table | Calendar records |
+
+**Source format:** CSV datasets
+
+**Data preparation tool:** Power Query Editor
+
+**Reporting tool:** Microsoft Power BI
+
+**Original source location:** Record the source folder or download location.
+
+**Source URL and licence:** Add the verified source link and check redistribution permissions before publishing the raw datasets.
+
+### 3. Data Grain and Meaning
+
+Before analysing the data, it is important to understand what each row represents.
+
+The expected data grain based on the dataset structure is:
+
+| Dataset | Expected Grain |
+|---|---|
+| Customers | One record per customer |
+| Accounts | One record per bank account |
+| Branches | One record per branch |
+| Transactions | One record per transaction |
+| Loans | One record per loan |
+| Loan Payments | One record per loan payment |
+| Cards | One record per card |
+| Date Table | One record per calendar date |
+
+These assumptions should be checked against the actual ID columns and source documentation.
+
+Important considerations:
+
+- Customer IDs, Account IDs, Branch IDs, Loan IDs, Transaction IDs, and Card IDs should be checked for uniqueness where they represent primary keys.
+- Loan payment records should not be confused with unique loans.
+- Transaction amounts represent transaction values; they should not automatically be treated as customer balances or revenue.
+- Account closure dates and other meaningful null values should not automatically be replaced with zero or blank text.
+
+**Confirmed data grain:** Verify against the actual source tables.
+
+### 4. Data Cleaning and Validation Checks
+
+#### 4.1 Column Names and Data Types
+
+**Work performed:**
+- Reviewed the column names and structure of all eight datasets in Power Query.
+- Checked the data types of the available columns.
+- Corrected data types based on the information stored in each column.
+- Prepared the tables for data modelling and analysis.
+
+**Validation checks:**
+- Confirm all expected columns are present.
+- Customer, account, branch, loan, transaction, and card identifiers use suitable data types.
+- Date fields use Date format.
+- Transaction time uses Time format where applicable.
+- Transaction amounts, account balances, loan amounts, and payment amounts use suitable numeric formats.
+- Interest rates and percentage fields use appropriate numeric types.
+
+**Decision / Log:** Record any remaining type conversion errors or corrections.
+
+#### 4.2 Missing and Blank Values
+
+**Work performed:**
+- Checked the datasets for null and blank values.
+- Reviewed missing values before making changes.
+- Considered the business meaning of missing information while preparing the tables.
+- Retained meaningful missing values where appropriate.
+
+**Validation checks:**
+- Count missing values in each important column.
+- Check missing customer and account identifiers.
+- Review missing transaction dates and amounts.
+- Inspect missing loan and repayment details.
+- Review account closure dates to distinguish open accounts from missing information.
+- Check whether missing card details affect card analysis.
+
+**Decision / Log:** Record the number of missing values and the action taken for each affected column.
+
+#### 4.3 Duplicate Records
+
+**Work performed:**
+- Checked the datasets for duplicate records.
+- Reviewed duplicate entries before deciding whether they should be removed.
+- Prepared the tables for reliable analysis.
+
+**Validation checks:**
+- Check duplicate customer, account, branch, loan, transaction, and card identifiers.
+- Check duplicate loan payment identifiers, if available.
+- Inspect exact duplicate rows.
+- Distinguish duplicate records from legitimate repeated transactions or payment activity.
+
+**Decision / Log:** Record duplicate counts and the reason for removing or retaining records.
+
+**Caution:** Repeated customer IDs in transaction or account tables do not necessarily indicate duplicates. One customer may have multiple accounts or transactions.
+
+#### 4.4 Text and Category Standardisation
+
+**Work performed:**
+- Reviewed column names and category values.
+- Standardised column names and category values where required.
+- Improved consistency across the banking datasets.
+
+**Validation checks:**
+- Check customer segment labels for inconsistent spelling or formatting.
+- Review account types and account statuses.
+- Check transaction types and transaction categories.
+- Review loan types and payment statuses.
+- Check card types, card networks, and card statuses.
+- Trim unnecessary spaces in text columns where required.
+
+**Decision / Log:** Record the category values corrected and any remaining inconsistencies.
+
+#### 4.5 Date and Time Validation
+
+**Work performed:**
+- Reviewed date-related columns and corrected their data types.
+- Prepared a separate Date Table for time-based reporting.
+- Checked the date fields required for transaction and repayment analysis.
+
+**Validation checks:**
+- Confirm date columns are recognised as valid dates.
+- Check minimum and maximum dates.
+- Inspect blank or invalid dates.
+- Check transaction time values and formatting.
+- Confirm the correct date column is connected to the Date Table.
+- Verify monthly and yearly reporting using the intended date relationship.
+
+**Decision / Log:** Record the date range and any remaining date-quality issues.
+
+#### 4.6 Numerical and Financial Data Validation
+
+**Work performed:**
+- Corrected numerical data types for financial columns.
+- Prepared amount, balance, interest, and credit-limit fields for calculations and visualisations.
+
+**Validation checks:**
+- Check null, zero, and negative transaction amounts.
+- Review account balances and outstanding loan balances.
+- Inspect unusual loan amounts and credit limits.
+- Check interest rate values for unexpected entries.
+- Verify that financial values are not incorrectly treated as text.
+- Compare suspicious values with the original source.
+
+**Caution:** Negative or zero values may represent valid banking activity. Do not remove them without checking their meaning.
+
+**Decision / Log:** Record unusual values and the action taken.
+
+#### 4.7 Relationship and Key Validation
+
+**Work performed:**
+- Prepared the cleaned datasets for relationship creation in Power BI.
+- Connected the banking tables through their relevant identifier columns.
+- Included a separate Date Table for time-based analysis.
+
+**Validation checks:**
+- Check whether primary key columns contain duplicate values.
+- Verify that foreign key values match the corresponding parent tables.
+- Review unmatched customer, account, branch, loan, and card identifiers.
+- Check relationship cardinality and filter direction.
+- Verify that relationships do not create ambiguous filtering paths.
+- Confirm that dashboard totals are not incorrectly multiplied due to relationship issues.
+
+**Decision / Log:** Record relationship corrections and unresolved unmatched records.
+
+### 5. Power Query Preparation Workflow
+
+The following workflow was used to prepare the banking datasets:
+
+1. Imported eight CSV datasets into Power BI.
+2. Opened the datasets in Power Query Editor.
+3. Inspected the structure, columns, and data types.
+4. Checked missing values and duplicate records.
+5. Corrected data types for date, time, numeric, and text columns.
+6. Standardised column names and category values where required.
+7. Reviewed and prepared the financial and banking-related fields.
+8. Created a separate Date Table for time-based analysis.
+9. Prepared the cleaned tables for data modelling.
+10. Loaded the transformed datasets into Power BI for report development.
+
+Power Query transformations are saved within the Power BI report, allowing the preparation steps to be reviewed and refreshed.
+
+### 6. Post-Cleaning Validation
+
+The following checks should be completed before finalising the dashboard.
+
+| Validation Item | Status / Result |
+|---|---|
+| Eight datasets imported | Completed |
+| Column names and structures reviewed | Completed |
+| Data types corrected | Completed |
+| Missing values inspected | Reviewed; record exact counts |
+| Duplicate records checked | Record actual counts |
+| Category values standardised | Record final validation |
+| Date and time formats checked | Record final validation |
+| Financial values inspected | Record final validation |
+| Primary and foreign keys checked | Record results |
+| Table relationships verified | Record results |
+| Date Table prepared | Completed |
+| Dashboard KPI totals validated | Record results |
+| Slicers and filters tested | Record results |
+
+*Status should reflect the actual checks completed. Add counts, corrections, and reasons wherever possible.*
+
+### 7. Impact on Dashboard Measures
+
+Data quality directly affects the accuracy of Power BI calculations.
+
+Before publishing the dashboard, verify the following:
+
+**Customer Analysis**
+- Total customer count should use unique customer IDs.
+- Customer segment totals should reconcile with the customer dataset.
+- Customer-level filters should work correctly.
+
+**Account Analysis**
+- Active account count should use the correct account status.
+- Active Account Percentage should use the correct total account count.
+- Account balances should be aggregated without duplication.
+
+**Transaction Analysis**
+- Total transaction count should reflect the transaction data grain.
+- Total Transaction Amount should use the correct transaction amount column.
+- Transaction type and monthly totals should reconcile with the source records.
+
+**Loan Analysis**
+- Total Loan Amount should be calculated from the loan records.
+- Outstanding Loan Balance should use the correct outstanding balance field.
+- Delayed Payment Records should count payment records where Days Late is greater than zero.
+- Delayed Payment Percentage should use total loan payment records as its denominator.
+
+**Card Analysis**
+- Total Cards should count unique card records.
+- Active Cards should use the correct card status.
+- Card activation percentage should use the correct total card count.
+- Credit limits, outstanding balances, and reward points should be aggregated using the appropriate calculation.
+
+**Time Intelligence**
+- Monthly and yearly calculations should use the intended Date Table.
+- Date relationships should support the required time-based measures.
+- Slicer interactions should produce consistent results.
+
+### 8. Dashboard Validation Results
+
+The following figures were identified in the project dashboards and should be reconciled with the underlying data.
+
+| Metric | Dashboard Finding |
+|---|---:|
+| Total Customers | 500 |
+| Total Accounts | 700 |
+| Active Accounts | 497 |
+| Active Account Percentage | Approximately 71% |
+| Total Transactions | 5,000 |
+| Highest Transaction Type – Interest | Approximately ₹6.4 million |
+| Credit Transaction Amount | Approximately ₹6.3 million |
+| Highest Monthly Transaction Amount – August | Approximately ₹3.34 million |
+| Total Loans | 300 |
+| Total Loan Amount | ₹72.21 million |
+| Outstanding Loan Balance | ₹53.44 million |
+| Total Loan Payment Records | 2,000 |
+| Delayed Payment Records | 500 |
+| Delayed Payment Percentage | 25% |
+| Total Cards | 600 |
+| Active Cards | 37 |
+
+These are dashboard findings, not a substitute for source-data validation. Recheck them against the final PBIX report after refresh.
+
+### 9. Data Limitations and Assumptions
+
+- The accuracy of dashboard results depends on the quality and completeness of the source datasets.
+- Missing values may affect certain calculations and visualisations.
+- Account and card status values must be interpreted consistently.
+- Delayed payment percentage represents the percentage of payment records with a delay, not the percentage of loans with delayed repayments.
+- Customer and account records may repeat across transaction and payment datasets because of one-to-many relationships.
+- Financial totals must be checked for duplicate counting caused by incorrect relationships or filter context.
+- Business findings describe the available dataset and should not automatically be treated as the performance of a real banking institution.
+
+### 10. Cleaning Summary
+
+Complete this section with the final verified results.
+
+| Item | Result |
+|---|---|
+| Source datasets | 8 |
+| Total records across datasets | 9,140 + Date Table records |
+| Rows retained | Record final count |
+| Rows removed | Record count and reason |
+| Columns with corrected data types | Record columns |
+| Missing values handled | Record columns and actions |
+| Duplicate records removed | Record count |
+| Category values standardised | Record changes |
+| Date Table | Created |
+| Key data-quality issues | Record findings |
+| Remaining limitations | Record limitations |
+| Validation date | Add completion date |
+
+*The total of 9,140 represents the seven banking datasets with known record counts. Date Table records are not included.*
+
+### 11. Completion Standard
+
+The data-cleaning and validation documentation is complete when:
+
+- All eight datasets have been inspected.
+- Data types and important column values have been checked.
+- Missing and duplicate records have been investigated.
+- Data-cleaning decisions are documented.
+- Relationships between banking tables have been validated.
+- Date-based calculations have been tested.
+- Dashboard KPIs have been reconciled with the prepared data.
+- Remaining assumptions and limitations have been clearly recorded.
+
+**Final Output:** Eight prepared banking datasets used to create the Power BI data model and five interactive dashboards for customer, account, transaction, loan, and card analysis.
