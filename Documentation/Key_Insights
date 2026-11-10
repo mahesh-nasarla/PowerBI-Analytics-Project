@@ -1,0 +1,27 @@
+
+KEY INSIGHTS
+
+1. Customer Analysis
+The bank has 500 customers across different customer segments.
+Student (99) and Business (97) are the two largest customer segments.
+Account activity, balances and card usage vary across customer segments.
+
+2. Account Analysis
+Out of 700 accounts, 497 are active (approximately 71%).
+IRA accounts have the highest total balance among the account types in the dashboard.
+Account balances and activity vary across account types and branches.
+
+3. Transaction Analysis
+The dataset contains 5,000 transactions.
+Interest transactions have the highest total transaction amount (approximately ₹6.4 million), followed by Credit transactions (approximately ₹6.3 million).
+Monthly transaction amounts vary, with August showing the highest amount (approximately ₹3.34 million) in the displayed trend.
+
+4. Loan Analysis
+The bank has 300 loans, with a total loan amount of ₹72.21 million and an outstanding balance of ₹53.44 million.
+Out of 2,000 loan-payment records, 500 have a delay, representing 25% of payment records.
+Education loans have the highest loan amount and outstanding balance among the loan types shown.
+
+5. Card Analysis
+The dataset contains 600 cards, of which 37 are marked as active.
+The dashboard shows both Credit and Debit cards, with more inactive than active cards.
+Card type, network, credit limits and reward points provide further information about card engagement.
