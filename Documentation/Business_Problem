@@ -1,0 +1,208 @@
+# Retail Bank Transaction Analysis
+## Power BI Project Documentation
+
+### 1. Project Overview
+
+The Retail Bank Transaction Analysis project focuses on analysing banking operations using Microsoft Power BI.
+
+The project includes customer, account, branch, transaction, loan, loan payment, and card datasets. I used Power Query to clean and transform the data, created relationships between tables, and developed five interactive dashboard pages.
+
+The main purpose is to understand customer behaviour, account activity, transaction trends, loan performance, and card usage through meaningful KPIs and visualisations.
+
+### 2. Problem Statement
+
+Banks maintain large amounts of data related to customers, accounts, transactions, loans, repayments, and cards. When this information is stored in separate datasets, it becomes difficult to understand overall banking performance and identify important business trends.
+
+This project aims to combine and analyse these datasets using Power BI. Interactive dashboards and KPIs help users monitor banking activities, identify customer behaviour patterns, evaluate loan repayment performance, and understand product usage.
+
+### 3. Project Objectives
+
+- Analyse customer distribution across different segments.
+- Understand account activity and branch performance.
+- Identify transaction patterns and monthly trends.
+- Monitor loan amounts and repayment behaviour.
+- Analyse card activation and product engagement.
+- Build interactive dashboards using KPIs, charts, and slicers.
+- Generate business insights to support better decision-making.
+
+### 4. Dataset Description
+
+The project uses eight datasets:
+
+| Dataset | Records |
+|---|---:|
+| Customers | 500 |
+| Accounts | 700 |
+| Branches | 40 |
+| Transactions | 5,000 |
+| Loans | 300 |
+| Loan Payments | 2,000 |
+| Cards | 600 |
+| Date Table | Calendar records |
+
+### 5. Data Cleaning and Transformation
+
+I used Power Query Editor in Power BI to clean and prepare the datasets before building the data model.
+
+**1. Handling Missing Values**
+- Identified null and missing values across datasets.
+- Reviewed missing values based on their business meaning.
+- Handled values where required and retained meaningful missing values where appropriate.
+
+**2. Removing Duplicate Records**
+- Checked datasets for duplicate records.
+- Removed duplicate entries where necessary.
+- Verified the cleaned data before analysis.
+
+**3. Correcting Data Types**
+- Changed columns to appropriate data types.
+- Converted date columns into Date format.
+- Corrected numeric, currency, and time-related column formats.
+
+**4. Standardising Data**
+- Standardised column names and category values.
+- Improved consistency across datasets.
+- Checked text fields for inconsistent formats.
+
+**5. Data Preparation**
+- Selected the required columns for analysis.
+- Renamed columns where needed.
+- Prepared cleaned tables for data modelling.
+- Created a Date Table for time-based analysis.
+
+### 6. Data Modelling
+
+After cleaning the datasets, I created relationships between the tables in Power BI.
+
+The model connects customers, accounts, branches, transactions, loans, loan payments, cards, and the Date Table.
+
+This allows information from different banking areas to be analysed together and supports interactive filtering across the dashboards.
+
+### 7. KPI Definitions
+
+KPIs (Key Performance Indicators) are measurements used to track and evaluate business performance.
+
+| KPI | Definition |
+|---|---|
+| Total Customers | Count of unique customer IDs |
+| Total Accounts | Count of account records |
+| Active Accounts | Count of accounts with Active status |
+| Active Account % | (Active Accounts / Total Accounts) × 100 |
+| Total Branches | Count of unique branch IDs |
+| Total Transactions | Count of transaction records |
+| Total Transaction Amount | Sum of transaction amounts |
+| Average Transaction Amount | Total Transaction Amount / Total Transactions |
+| Total Loan Amount | Sum of loan amounts |
+| Outstanding Loan Balance | Sum of outstanding loan balances |
+| Total Loan Payments | Count of loan payment records |
+| Delayed Payment Records | Count of payment records where Days Late is greater than zero |
+| Delayed Payment % | (Delayed Payment Records / Total Loan Payments) × 100 |
+| Total Cards | Count of card records |
+| Active Cards | Count of cards with Active status |
+| Card Activation % | (Active Cards / Total Cards) × 100 |
+
+*Note: These are KPI calculation definitions. Actual DAX measures should use the corresponding column names and filters in the Power BI model.*
+
+### 8. Dashboard Pages
+
+**Page 1: Customer Segmentation and Activity Analysis**
+- Analyses customer distribution across different segments.
+- Compares customer groups based on their account activity and balances.
+- Helps understand differences in customer behaviour.
+
+**Page 2: Account Usage and Branch Performance**
+- Analyses active and inactive accounts.
+- Compares account balances across account types.
+- Identifies differences in account activity across branches.
+
+**Page 3: Transaction Trends and Pattern Analysis**
+- Analyses transaction amounts and transaction types.
+- Tracks monthly transaction trends.
+- Helps identify changes in customer transaction activity.
+
+**Page 4: Loan Performance and Repayment Analysis**
+- Analyses total loan amounts and outstanding balances.
+- Compares loan performance across loan types.
+- Tracks payment records and delayed repayments.
+
+**Page 5: Card Usage and Product Engagement**
+- Analyses active and inactive cards.
+- Compares credit and debit cards.
+- Examines card networks, credit limits, and reward points.
+
+### 9. Key Business Insights
+
+The following insights were identified from the Power BI dashboards.
+
+**1. Customer Analysis**
+- The bank has 500 customers across different customer segments.
+- Student (99) and Business (97) are the two largest customer segments.
+- Account activity, balances, and card usage vary across customer segments.
+
+**2. Account Analysis**
+- Out of 700 accounts, 497 are active, representing approximately 71%.
+- IRA accounts have the highest total balance among the account types shown.
+- Account balances and activity vary across account types and branches.
+
+**3. Transaction Analysis**
+- The dataset contains 5,000 transactions.
+- Interest transactions have the highest total transaction amount at approximately ₹6.4 million, followed by Credit transactions at approximately ₹6.3 million.
+- August recorded the highest monthly transaction amount at approximately ₹3.34 million in the displayed trend.
+
+**4. Loan Analysis**
+- The bank has 300 loans, with a total loan amount of ₹72.21 million and an outstanding balance of ₹53.44 million.
+- Out of 2,000 loan-payment records, 500 have a delay, representing 25% of payment records.
+- Education loans have the highest loan amount and outstanding balance among the loan types shown.
+
+**5. Card Analysis**
+- The dataset contains 600 cards, of which 37 are marked as active.
+- The dashboard shows both Credit and Debit cards, with more inactive than active cards.
+- Card type, network, credit limits, and reward points provide further information about card engagement.
+
+### 10. Business Recommendations
+
+Based on the dashboard findings, the following recommendations can help improve banking operations.
+
+**1. Improve Card Activation**
+
+Focus on inactive cards and encourage customers to activate them through suitable offers, reminders, and awareness campaigns.
+
+**2. Monitor Loan Repayments**
+
+Pay close attention to delayed payments and monitor repayment patterns across loan types to identify accounts that may need follow-up.
+
+**3. Provide Segment-Based Banking Services**
+
+Use customer segments, account activity, and balance information to offer banking products that suit different customer needs.
+
+**4. Improve Account Engagement**
+
+Monitor active and closed accounts and understand differences in account balances across account types and branches to identify opportunities for better customer engagement.
+
+**5. Analyse Transaction Trends**
+
+Monitor monthly transaction amounts and transaction types to understand changes in customer activity and plan suitable banking services.
+
+**6. Encourage Relevant Product Usage**
+
+Use card types, networks, credit limits, and reward points to understand product engagement and identify opportunities to improve customer usage.
+
+### 11. Tools and Technologies Used
+
+- Microsoft Power BI
+- Power Query Editor
+- DAX (Data Analysis Expressions)
+- Data Modelling and Relationships
+- Date Table and Time Intelligence
+- Interactive Slicers and Filters
+- KPI Cards and Data Visualisations
+
+### 12. Project Outcome and Learning
+
+This project helped me gain practical experience in building an end-to-end Business Intelligence solution using Power BI.
+
+I worked on data cleaning, data transformation, data modelling, DAX calculations, KPI development, and interactive dashboard creation.
+
+I also learned how to interpret dashboard results, identify business trends, and present useful recommendations based on data.
+
+The final report provides an interactive view of retail banking operations and helps users understand important performance areas through data.
